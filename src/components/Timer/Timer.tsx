@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import './Timer.scss';
 import IconButton from '../IconButton/IconButton';
 import playIcon from '../../assets/images/play.svg';
@@ -7,11 +7,18 @@ import resetIcon from '../../assets/images/replay.svg';
 import stopIcon from '../../assets/images/stop.svg';
 
 type Props = {
+  setInSession: React.Dispatch<React.SetStateAction<boolean>>;
+  inSession: boolean;
   minutes: number;
   seconds: number;
 };
 
-const Timer = ({ minutes = 0, seconds = 0 }: Props) => {
+const Timer = ({
+  minutes = 0,
+  seconds = 0,
+  setInSession,
+  inSession
+}: Props) => {
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(true);
   const [icon, setIcon] = useState(playIcon);
@@ -20,11 +27,18 @@ const Timer = ({ minutes = 0, seconds = 0 }: Props) => {
     seconds
   });
 
+  const [audio] = useState(
+    new Audio('https://pickles-and-jam.s3.amazonaws.com/beep.wav')
+  );
+
   const tick = () => {
     if (paused || over) return;
 
     if (time.minutes === 0 && time.seconds === 0) {
       setOver(true);
+      setInSession(!inSession);
+      togglePlayIcon();
+      audio.play();
     } else if (time.seconds === 0) {
       setTime({
         minutes: time.minutes - 1,
@@ -65,13 +79,13 @@ const Timer = ({ minutes = 0, seconds = 0 }: Props) => {
 
   return (
     <div>
-      <h1 id='timer'>
+      <h1 id="timer">
         {`${time.minutes
           .toString()
           .padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}
       </h1>
 
-      <div id='button-container'>
+      <div id="button-container">
         <IconButton
           image={stopIcon}
           alt="a stop icon"
