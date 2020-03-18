@@ -12,6 +12,7 @@ const HomePage = () => {
   const breakMinutes = 0;
   const sessionText = ['Session', 'Break'];
 
+
   const toggleSession = () => {
     setFading(true);
     setTimeout(() => {
@@ -19,7 +20,7 @@ const HomePage = () => {
       setFading(false);
     }, 875);
   };
-
+  
   return (
     <div id="content-container">
       <Animated
