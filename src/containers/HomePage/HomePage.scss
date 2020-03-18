@@ -1,0 +1,16 @@
+#content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 246px;
+
+    h2 {
+        margin: 0;
+        margin-top: 20px;
+        font-family: 'Staatliches', sans-serif;
+        color: #BF0628;
+        font-size: 36px;
+        font-weight: 400;
+    }
+}
+
