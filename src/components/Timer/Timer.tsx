@@ -7,8 +7,7 @@ import resetIcon from '../../assets/images/replay.svg';
 import stopIcon from '../../assets/images/stop.svg';
 
 type Props = {
-  setInSession: React.Dispatch<React.SetStateAction<boolean>>;
-  inSession: boolean;
+  onTimerEnd: () => void;
   minutes: number;
   seconds: number;
 };
@@ -16,8 +15,8 @@ type Props = {
 const Timer = ({
   minutes = 0,
   seconds = 0,
-  setInSession,
-  inSession
+  onTimerEnd
+  
 }: Props) => {
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(true);
@@ -36,7 +35,7 @@ const Timer = ({
 
     if (time.minutes === 0 && time.seconds === 0) {
       setOver(true);
-      setInSession(!inSession);
+      onTimerEnd();
       togglePlayIcon();
       audio.play();
     } else if (time.seconds === 0) {
