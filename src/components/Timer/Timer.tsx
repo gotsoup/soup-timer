@@ -8,6 +8,7 @@ import stopIcon from '../../assets/images/stop.svg';
 
 type Props = {
   onTimerEnd: () => void;
+  tabCheck: boolean;
   minutes: number;
   seconds: number;
 };
@@ -15,6 +16,7 @@ type Props = {
 const Timer = ({
   minutes = 0,
   seconds = 0,
+  tabCheck,
   onTimerEnd
   
 }: Props) => {
@@ -88,17 +90,20 @@ const Timer = ({
         <IconButton
           image={stopIcon}
           alt="a stop icon"
+          tabCheck={tabCheck}
           onClick={() => reset(true)}
         />
 
         <IconButton
           image={icon}
           alt="A play icon"
+          tabCheck={tabCheck}
           onClick={() => togglePlayPause(over)}
         />
         <IconButton
           image={resetIcon}
           alt="A restart icon"
+          tabCheck={tabCheck}
           onClick={() => {
             reset(false);
           }}

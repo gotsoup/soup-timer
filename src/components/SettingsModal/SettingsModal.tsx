@@ -8,9 +8,10 @@ import plusIcon from '../../assets/images/plus.svg';
 type Props = {
   modifyTime: (addTime: boolean) => void;
   applyChanges: () => void;
+  tabCheck: boolean;
 };
 
-const SettingsModal = ({ modifyTime, applyChanges }: Props) => (
+const SettingsModal = ({ modifyTime, applyChanges, tabCheck }: Props) => (
   <div id="overlay-background">
     <div id="settings-overlay">
       <div id="settings-option-container">
@@ -20,12 +21,14 @@ const SettingsModal = ({ modifyTime, applyChanges }: Props) => (
             <IconButton
               image={minusIcon}
               alt="minus icon"
+              tabCheck={tabCheck}
               onClick={() => modifyTime(false)}
             />
             <h3 id="session-time">25</h3>
             <IconButton
               image={plusIcon}
               alt="plus icon"
+              tabCheck={tabCheck}
               onClick={() => modifyTime(true)}
             />
           </div>
@@ -36,12 +39,14 @@ const SettingsModal = ({ modifyTime, applyChanges }: Props) => (
             <IconButton
               image={minusIcon}
               alt="minus icon"
+              tabCheck={tabCheck}
               onClick={() => modifyTime(false)}
             />
             <h3 id="break-time">5</h3>
             <IconButton
               image={plusIcon}
               alt="plus icon"
+              tabCheck={tabCheck}
               onClick={() => modifyTime(true)}
             />
           </div>

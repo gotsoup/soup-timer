@@ -1,12 +1,22 @@
-.buttonContainer {
+.button-container {
   align-items: center;
   border: none;
   display: flex;
   background-color: transparent;
   justify-content: center;
 
+  
+
   .icon {
     width: 30px;
     height: 30px;
   }
+}
+
+.button-container:not(.tab-outlining):focus {
+  outline: none;
+}
+
+.tab-outlining:focus {
+  outline-color: #BF0628;
 }
