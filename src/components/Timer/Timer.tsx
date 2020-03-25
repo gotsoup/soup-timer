@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './Timer.scss';
 import IconButton from '../IconButton/IconButton';
 import playIcon from '../../assets/images/play.svg';
@@ -8,16 +8,12 @@ import stopIcon from '../../assets/images/stop.svg';
 
 type Props = {
   onTimerEnd: () => void;
+  tabCheck: boolean;
   minutes: number;
   seconds: number;
 };
 
-const Timer = ({
-  minutes = 0,
-  seconds = 0,
-  onTimerEnd
-  
-}: Props) => {
+const Timer = ({ minutes = 0, seconds = 0, tabCheck, onTimerEnd }: Props) => {
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(true);
   const [icon, setIcon] = useState(playIcon);
@@ -25,10 +21,8 @@ const Timer = ({
     minutes,
     seconds
   });
-
-  const [audio] = useState(
-    new Audio('https://pickles-and-jam.s3.amazonaws.com/beep.wav')
-  );
+  
+  const [audio] = useState(new Audio(process.env.REACT_APP_AUDIO_URL));
 
   const tick = () => {
     if (paused || over) return;
@@ -67,6 +61,10 @@ const Timer = ({
     return () => clearInterval(timerID);
   });
 
+  useEffect(() => {
+    reset(true);
+  }, [minutes]);
+
   const togglePlayIcon = () => {
     setIcon(icon === playIcon ? pauseIcon : playIcon);
   };
@@ -88,17 +86,20 @@ const Timer = ({
         <IconButton
           image={stopIcon}
           alt="a stop icon"
+          tabCheck={tabCheck}
           onClick={() => reset(true)}
         />
 
         <IconButton
           image={icon}
           alt="A play icon"
+          tabCheck={tabCheck}
           onClick={() => togglePlayPause(over)}
         />
         <IconButton
           image={resetIcon}
           alt="A restart icon"
+          tabCheck={tabCheck}
           onClick={() => {
             reset(false);
           }}
