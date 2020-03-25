@@ -1,5 +1,4 @@
 #overlay-background {
-  display: none;
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -8,6 +7,7 @@
   left: 0;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 
   #settings-overlay {
     display: flex;
@@ -34,6 +34,15 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        
+        h4 {
+          margin: 0 0 20px 0;
+          font-family: 'Staatliches', sans-serif;
+          color: #BF0628;
+          font-size: 30px;
+          line-height: 38px;
+          font-weight: 400;
+        }
 
         .session-controls {
           display: flex;
@@ -41,7 +50,12 @@
           align-items: center;
 
           h3 {
-            margin: 0 14px 0 14px;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 68px;
+            color: #260101;
+            font-size: 50px;
+            font-weight: 400;
           }
 
         }
@@ -51,10 +65,10 @@
     #apply {
       width: 100%;
       height: 45px;
-      background-color: var(--medium-red);
+      background-color: #D92b4b;
       border: none;
       color: white;
-      font-family: var(--heading-font);
+      font-family: 'Staatliches', sans-serif;
       font-size: 24px;
       line-height: 32px;
     }

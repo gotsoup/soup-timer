@@ -13,6 +13,10 @@
   }
 }
 
+.is-disabled {
+  opacity: 25%;
+}
+
 .button-container:not(.tab-outlining):focus {
   outline: none;
 }
