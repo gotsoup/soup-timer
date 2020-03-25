@@ -1,17 +1,26 @@
 import React from 'react';
 import './SettingsModal.scss';
-import '../IconButton..tsx';
 import IconButton from '../IconButton/IconButton';
 import minusIcon from '../../assets/images/minus.svg';
 import plusIcon from '../../assets/images/plus.svg';
 
 type Props = {
-  modifyTime: (addTime: boolean) => void;
-  applyChanges: () => void;
+  modifyTime: (addTime: boolean, isSessionMinutes: boolean) => void;
+  closeModal: (OpenModal: boolean) => void;
+  sessionMinutes: number;
+  breakMinutes: number;
   tabCheck: boolean;
 };
 
-const SettingsModal = ({ modifyTime, applyChanges, tabCheck }: Props) => (
+
+
+const SettingsModal = ({
+  modifyTime,
+  closeModal,
+  sessionMinutes,
+  breakMinutes,
+  tabCheck
+}: Props) => (
   <div id="overlay-background">
     <div id="settings-overlay">
       <div id="settings-option-container">
@@ -22,14 +31,16 @@ const SettingsModal = ({ modifyTime, applyChanges, tabCheck }: Props) => (
               image={minusIcon}
               alt="minus icon"
               tabCheck={tabCheck}
-              onClick={() => modifyTime(false)}
+              onClick={() => modifyTime(false, true)}
+              isDisabled= {sessionMinutes < 10 ? true : false}
             />
-            <h3 id="session-time">25</h3>
+            <h3 id="session-time">{sessionMinutes}</h3>
             <IconButton
               image={plusIcon}
               alt="plus icon"
               tabCheck={tabCheck}
-              onClick={() => modifyTime(true)}
+              onClick={() => modifyTime(true, true)}
+              isDisabled= {sessionMinutes > 55 ? true : false}
             />
           </div>
         </div>
@@ -40,19 +51,21 @@ const SettingsModal = ({ modifyTime, applyChanges, tabCheck }: Props) => (
               image={minusIcon}
               alt="minus icon"
               tabCheck={tabCheck}
-              onClick={() => modifyTime(false)}
+              onClick={() => modifyTime(false, false)}
+              isDisabled= {breakMinutes < 10 ? true : false}
             />
-            <h3 id="break-time">5</h3>
+            <h3 id="break-time">{breakMinutes}</h3>
             <IconButton
               image={plusIcon}
               alt="plus icon"
               tabCheck={tabCheck}
-              onClick={() => modifyTime(true)}
+              onClick={() => modifyTime(true, false)}
+              isDisabled= {breakMinutes > 55 ? true : false}
             />
           </div>
         </div>
       </div>
-      <button type="button" id="apply" onClick={applyChanges}>
+      <button type="button" id="apply" onClick={() => closeModal(false)}>
         Apply
       </button>
     </div>
