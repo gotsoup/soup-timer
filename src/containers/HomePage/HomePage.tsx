@@ -74,6 +74,7 @@ const HomePage = () => {
       <Timer
         minutes={inSession ? sessionMinutes : breakMinutes}
         seconds={0}
+        inSession={inSession}
         tabCheck={userTabbing}
         onTimerEnd={toggleSession}
       />
