@@ -8,12 +8,13 @@ import stopIcon from '../../assets/images/stop.svg';
 
 type Props = {
   onTimerEnd: () => void;
+  inSession: boolean;
   tabCheck: boolean;
   minutes: number;
   seconds: number;
 };
 
-const Timer = ({ minutes = 0, seconds = 0, tabCheck, onTimerEnd }: Props) => {
+const Timer = ({ minutes = 0, seconds = 0, inSession = true, tabCheck, onTimerEnd }: Props) => {
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(true);
   const [icon, setIcon] = useState(playIcon);
@@ -21,7 +22,7 @@ const Timer = ({ minutes = 0, seconds = 0, tabCheck, onTimerEnd }: Props) => {
     minutes,
     seconds
   });
-  
+
   const [audio] = useState(new Audio(process.env.REACT_APP_AUDIO_URL));
 
   const tick = () => {
@@ -54,6 +55,7 @@ const Timer = ({ minutes = 0, seconds = 0, tabCheck, onTimerEnd }: Props) => {
     isPause ? setPaused(true) : setPaused(false);
     setIcon(isPause ? playIcon : pauseIcon);
     setOver(false);
+    console.log('reset');
   };
 
   useEffect(() => {
@@ -63,7 +65,13 @@ const Timer = ({ minutes = 0, seconds = 0, tabCheck, onTimerEnd }: Props) => {
 
   useEffect(() => {
     reset(true);
-  }, [minutes]);
+  }, [minutes, inSession]);
+
+  useEffect(() => {
+    document.title = `(${`${time.minutes
+      .toString()
+      .padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}) Soup Timer`;
+  }, [time]);
 
   const togglePlayIcon = () => {
     setIcon(icon === playIcon ? pauseIcon : playIcon);
@@ -76,11 +84,9 @@ const Timer = ({ minutes = 0, seconds = 0, tabCheck, onTimerEnd }: Props) => {
 
   return (
     <div>
-      <h1 id="timer">
-        {`${time.minutes
-          .toString()
-          .padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}
-      </h1>
+      <h1 id="timer">{`${time.minutes
+        .toString()
+        .padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}</h1>
 
       <div id="button-container">
         <IconButton
