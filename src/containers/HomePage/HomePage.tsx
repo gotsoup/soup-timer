@@ -72,7 +72,7 @@ const HomePage = () => {
         <h2>{sessionText[inSession ? 0 : 1]}</h2>
       </Animated>
       <Timer
-        minutes= {inSession ? sessionMinutes : breakMinutes}
+        minutes={inSession ? sessionMinutes : breakMinutes}
         seconds={0}
         inSession={inSession}
         tabCheck={userTabbing}

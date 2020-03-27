@@ -14,7 +14,13 @@ type Props = {
   seconds: number;
 };
 
-const Timer = ({ minutes = 0, seconds = 0, inSession = true, tabCheck, onTimerEnd }: Props) => {
+const Timer = ({
+  minutes = 0,
+  seconds = 0,
+  inSession = true,
+  tabCheck,
+  onTimerEnd
+}: Props) => {
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(true);
   const [icon, setIcon] = useState(playIcon);
@@ -55,7 +61,6 @@ const Timer = ({ minutes = 0, seconds = 0, inSession = true, tabCheck, onTimerEn
     isPause ? setPaused(true) : setPaused(false);
     setIcon(isPause ? playIcon : pauseIcon);
     setOver(false);
-    console.log('reset');
   };
 
   useEffect(() => {
@@ -70,7 +75,9 @@ const Timer = ({ minutes = 0, seconds = 0, inSession = true, tabCheck, onTimerEn
   useEffect(() => {
     document.title = `(${`${time.minutes
       .toString()
-      .padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}) Soup Timer`;
+      .padStart(2, '0')}:${time.seconds
+      .toString()
+      .padStart(2, '0')}`}) Soup Timer`;
   }, [time]);
 
   const togglePlayIcon = () => {
