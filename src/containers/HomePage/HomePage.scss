@@ -17,17 +17,25 @@
     width: 100%;
   }
 
-  .main-image {
-    margin: 0 0.625rem;
-    max-width: 100%;
+  .title-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  h2 {
+  .main-image {
+    margin: 0 0.625rem;
+    max-width: 90%;
+  }
+
+  .session-title{
     color: $base-red;
     font-family: $font-stack-secondary;
     font-size: $h2-font-size;
     font-weight: 400;
     margin: 0;
     margin-top: 1.25rem;
+    text-align: center;
   }
 }

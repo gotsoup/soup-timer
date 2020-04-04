@@ -1,4 +1,6 @@
 import React from 'react';
+import classNames from 'classnames';
+
 import './IconButton.scss';
 
 type Props = {
@@ -7,15 +9,6 @@ type Props = {
   tabCheck: boolean;
   onClick: () => void;
   isDisabled?: boolean;
-};
-
-const getClasses = (isTabbing: boolean, buttonDisabled: boolean) => {
-  let classes = 'button-container';
-
-  if (isTabbing) classes = `${classes} tab-outling`;
-  if (buttonDisabled) classes = `${classes} is-disabled`;
-
-  return classes;
 };
 
 const IconButton = ({
@@ -28,7 +21,11 @@ const IconButton = ({
   <button
     onClick={onClick}
     type="button"
-    className={getClasses(tabCheck, isDisabled)}
+    className={classNames(
+      'button-container',
+      { 'tab-outlining': tabCheck },
+      { 'is-disabled': isDisabled }
+    )}
     disabled={isDisabled}
   >
     <img src={image} alt={alt} className="icon" />
