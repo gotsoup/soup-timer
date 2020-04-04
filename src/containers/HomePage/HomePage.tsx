@@ -40,7 +40,7 @@ const HomePage = () => {
   );
 
   return (
-    <div id="content-container">
+    <div className="content-container">
       {modalOpen && (
         <SettingsModal
           modifyTime={changeTime}
@@ -51,7 +51,7 @@ const HomePage = () => {
         />
       )}
 
-      <header>
+      <header className='header'>
         <IconButton
           image={settingsIcon}
           alt="open settings icon"
@@ -62,6 +62,7 @@ const HomePage = () => {
 
       <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={!fading}>
         <img
+          className='main-image'
           src={inSession ? sessionImg : breakImg}
           alt={
             inSession

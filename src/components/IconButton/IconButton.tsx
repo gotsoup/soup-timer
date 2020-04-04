@@ -9,7 +9,7 @@ type Props = {
   isDisabled?: boolean;
 };
 
-const genClasses = (isTabbing: boolean, buttonDisabled: boolean) => {
+const getClasses = (isTabbing: boolean, buttonDisabled: boolean) => {
   let classes = 'button-container';
 
   if (isTabbing) classes = `${classes} tab-outling`;
@@ -28,7 +28,7 @@ const IconButton = ({
   <button
     onClick={onClick}
     type="button"
-    className={genClasses(tabCheck, isDisabled)}
+    className={getClasses(tabCheck, isDisabled)}
     disabled={isDisabled}
   >
     <img src={image} alt={alt} className="icon" />

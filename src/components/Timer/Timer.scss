@@ -1,23 +1,24 @@
-div {
+@import 'styles/variables';
+
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    font-family: $font-stack-primary;
+    color: $text-color;
+    font-size: $h1-font-size;
+    font-weight: 400;
+  }
+
+  .button-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-
-    h1 {
-        margin: 0;
-        font-family: 'Open Sans', sans-serif;
-        color: #260101;
-        font-size: 75px;
-        font-weight: 400;
-    }
-    
-    #button-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 170px;
-    }
+    justify-content: space-between;
+    width: 10.625rem;
+  }
 }
-

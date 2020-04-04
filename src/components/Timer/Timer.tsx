@@ -90,12 +90,12 @@ const Timer = ({
   };
 
   return (
-    <div>
-      <h1 id="timer">{`${time.minutes
+    <div className="timer-container">
+      <h1>{`${time.minutes
         .toString()
         .padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}</h1>
 
-      <div id="button-container">
+      <div className="button-container">
         <IconButton
           image={stopIcon}
           alt="a stop icon"
