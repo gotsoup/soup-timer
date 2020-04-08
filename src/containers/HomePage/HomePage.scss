@@ -1,28 +1,41 @@
+@import "styles/variables";
 
+.content-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  width: 100%;
 
-
-#content-container {
+  .header {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12.5rem;
     top: 0;
     width: 100%;
+  }
+
+  .title-container {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+  }
 
-    header {
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 200px;
-    }
-  
-    h2 {
-        margin: 0;
-        margin-top: 20px;
-        font-family: 'Staatliches', sans-serif;
-        color: #BF0628;
-        font-size: 36px;
-        font-weight: 400;
-    }
+  .main-image {
+    margin: 0 0.625rem;
+    max-width: 90%;
+  }
+
+  .session-title{
+    color: $base-red;
+    font-family: $font-stack-secondary;
+    font-size: $h2-font-size;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 1.25rem;
+    text-align: center;
+  }
 }

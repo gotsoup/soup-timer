@@ -1,8 +1,12 @@
 import React from 'react';
-import './SettingsModal.scss';
+import classNames from 'classnames';
+
 import IconButton from '../IconButton/IconButton';
+
 import minusIcon from '../../assets/images/minus.svg';
 import plusIcon from '../../assets/images/plus.svg';
+
+import './SettingsModal.scss';
 
 type Props = {
   modifyTime: (addTime: boolean, isSessionMinutes: boolean) => void;
@@ -12,60 +16,69 @@ type Props = {
   tabCheck: boolean;
 };
 
+type TimeOptionProps = {
+  title: string;
+  tabCheck: boolean;
+  minutes: number;
+  modifyTime: (addTime: boolean, isSessionMinutes: boolean) => void;
+  isSession: boolean;
+};
 
+const TimeOption = ({
+  title,
+  tabCheck,
+  minutes,
+  modifyTime,
+  isSession,
+}: TimeOptionProps) => (
+  <div className="flex-column">
+    <h4 className="option-title">{title}</h4>
+    <div className={'flex-row'}>
+      <IconButton
+        image={minusIcon}
+        alt="minus icon"
+        tabCheck={tabCheck}
+        onClick={() => modifyTime(false, isSession)}
+        isDisabled={minutes < 10}
+      />
+      <h3 className="minutes">{minutes}</h3>
+      <IconButton
+        image={plusIcon}
+        alt="plus icon"
+        tabCheck={tabCheck}
+        onClick={() => modifyTime(true, isSession)}
+        isDisabled={minutes > 55}
+      />
+    </div>
+  </div>
+);
 
 const SettingsModal = ({
   modifyTime,
   closeModal,
   sessionMinutes,
   breakMinutes,
-  tabCheck
+  tabCheck,
 }: Props) => (
-  <div id="overlay-background">
-    <div id="settings-overlay">
-      <div id="settings-option-container">
-        <div className="setting-option">
-          <h4>Session</h4>
-          <div className="session-controls session">
-            <IconButton
-              image={minusIcon}
-              alt="minus icon"
-              tabCheck={tabCheck}
-              onClick={() => modifyTime(false, true)}
-              isDisabled= {sessionMinutes < 10 ? true : false}
-            />
-            <h3 id="session-time">{sessionMinutes}</h3>
-            <IconButton
-              image={plusIcon}
-              alt="plus icon"
-              tabCheck={tabCheck}
-              onClick={() => modifyTime(true, true)}
-              isDisabled= {sessionMinutes > 55 ? true : false}
-            />
-          </div>
-        </div>
-        <div className="setting-option">
-          <h4>Break</h4>
-          <div className="session-controls break">
-            <IconButton
-              image={minusIcon}
-              alt="minus icon"
-              tabCheck={tabCheck}
-              onClick={() => modifyTime(false, false)}
-              isDisabled= {breakMinutes < 10 ? true : false}
-            />
-            <h3 id="break-time">{breakMinutes}</h3>
-            <IconButton
-              image={plusIcon}
-              alt="plus icon"
-              tabCheck={tabCheck}
-              onClick={() => modifyTime(true, false)}
-              isDisabled= {breakMinutes > 55 ? true : false}
-            />
-          </div>
-        </div>
+  <div className={classNames('flex-column', 'overlay-background')}>
+    <div className={classNames('flex-column', 'settings-overlay')}>
+      <div className={classNames('flex-row', 'settings-option-container')}>
+        <TimeOption
+          title={'Session'}
+          tabCheck={tabCheck}
+          minutes={sessionMinutes}
+          modifyTime={modifyTime}
+          isSession
+        />
+        <TimeOption
+          title={'Break'}
+          tabCheck={tabCheck}
+          minutes={breakMinutes}
+          modifyTime={modifyTime}
+          isSession={false}
+        />
       </div>
-      <button type="button" id="apply" onClick={() => closeModal(false)}>
+      <button type="button" className="apply" onClick={() => closeModal(false)}>
         Apply
       </button>
     </div>

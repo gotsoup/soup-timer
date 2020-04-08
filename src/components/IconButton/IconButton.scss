@@ -1,11 +1,11 @@
+@import 'styles/variables';
+
 .button-container {
   align-items: center;
+  background-color: transparent;
   border: none;
   display: flex;
-  background-color: transparent;
   justify-content: center;
-
-  
 
   .icon {
     width: 30px;
@@ -22,5 +22,5 @@
 }
 
 .tab-outlining:focus {
-  outline-color: #BF0628;
+  outline-color: $base-red;
 }

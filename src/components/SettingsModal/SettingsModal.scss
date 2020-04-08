@@ -1,4 +1,20 @@
-#overlay-background {
+@import 'styles/variables';
+
+.flex-row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flex-column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.overlay-background {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -8,69 +24,50 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
+}
 
-  #settings-overlay {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    background-color: white;
-    box-shadow: 0 3px 6px #00000029;
-    border-radius: 10px;
-    width: 550px;
-    height: 281px;
-    padding: 17px;
+.settings-overlay {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px #00000029;
+  justify-content: flex-end;
+  height: 281px;
+  padding: 1.063rem;
+  width: 550px;
+}
 
-    #settings-option-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      flex: 1;
-      width: 100%;
+.settings-option-container {
+  justify-content: space-around;
+  flex: 1;
+  width: 100%;
+}
 
-      .setting-option {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
-        h4 {
-          margin: 0 0 20px 0;
-          font-family: 'Staatliches', sans-serif;
-          color: #BF0628;
-          font-size: 30px;
-          line-height: 38px;
-          font-weight: 400;
-        }
+.apply {
+  width: 100%;
+  height: 2.813rem;
+  background-color: $light-red;
+  border: none;
+  border-radius: 5px;
+  color: $base-white;
+  font-family: $font-stack-secondary;
+  font-size: $button-font-size;
+  line-height: 32px;
+}
 
-        .session-controls {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
+.option-title {
+  margin: 0 0 1.25rem 0;
+  font-family: $font-stack-secondary;
+  color: $base-red;
+  font-size: $h4-font-size;
+  line-height: 38px;
+  font-weight: 400;
+}
 
-          h3 {
-            margin: 0;
-            font-family: 'Open Sans', sans-serif;
-            line-height: 68px;
-            color: #260101;
-            font-size: 50px;
-            font-weight: 400;
-          }
-
-        }
-      }
-    }
-
-    #apply {
-      width: 100%;
-      height: 45px;
-      background-color: #D92b4b;
-      border: none;
-      color: white;
-      font-family: 'Staatliches', sans-serif;
-      font-size: 24px;
-      line-height: 32px;
-    }
-  }
+.minutes {
+  margin: 0;
+  font-family: $font-stack-primary;
+  line-height: 68px;
+  color: $text-color;
+  font-size: $h3-font-size;
+  font-weight: 400;
 }
